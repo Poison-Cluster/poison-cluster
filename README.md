@@ -1,5 +1,35 @@
 # Poison Cluster
 
+# Usage Guide
+
+## Random Noise
+
+Open the notebook in a jupyter notebbok environment and execute the cells in order.  
+The cells are organized as follows:
+
+### 1. **Data Setup**
+The notebook downloads the Iris dataset using `sklearn.datasets` and stores it in Pandas DataFrames for ease of manipulation.
+
+### 2. **Clustering Algorithms**
+It applies `KMeans` clustering on:
+- Clean/original data.
+- Noisy data with injected random points.
+- Data with explicit and subtle outliers.
+- Data with shuffled labels (simulating mislabeling).
+
+### 3. **Visualization**
+Custom plotting functions visualize the clustering results with:
+- Color-coded cluster labels.
+- Visual comparisons between clean and poisoned data clusters.
+
+### 4. **Evaluation**
+For each scenario, clustering quality is evaluated using:
+- `silhouette_score`
+- `calinski_harabasz_score`
+- `davies_bouldin_score`
+
+These metrics are compared across different scenarios to observe how noise affects cluster structure and algorithm performance.
+
 # Summary of the References
 
 ## Tian et al. (2022) - A Comprehensive Survey on Poisoning Attacks and Countermeasures in Machine Learning
