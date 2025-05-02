@@ -2,6 +2,17 @@
 
 ## Overview of Different Attacks
 
+### Mimicry-based Data Poisoning Attack: A Behaviour Borrowed from Nature
+![image](https://github.com/user-attachments/assets/1148de88-dab9-4df1-a1f8-5bf3caadd478)
+
+*Image source: [The past, present and future of 'cuckoos versus reed warblers'](https://www.researchgate.net/publication/256655356_The_past_present_and_future_of_'cuckoos_versus_reed_warblers')*
+
+In Statistics and Machine Learning, many estimators and algorithms are sensitive to outliers. For example, calculating the mean of a distribution or performing clustering with KMeans are affected by the presence of extreme values. Oftentimes, it is advised to apply an outlier detection algorithm on the dataset and remove the extreme values or areas with low-density compared to the rest of the data. Applying outlier detection and issuing their blind removal may lead to unexpected and even fatal results in terms of the Machine Learning model that is to be trained by the cleaned data.
+
+To exploit this vulnerability of the general Data Science pipeline, an interesting behaviour is borrowed from nature: *mimicry*, more specifically, the *cuckoo's parasitism*. In nature, many creatures in various environments follow mimicry. A behaviour that allows them to despite being harmless appear as harmful (to avoid being eaten by a predator) or to despite being harmful appear as a prey (to lure others into a trap). These creatures adapted to their environment, its dangers and opportunities to survive. A cuckoo selects another bird's nest to lay its eggs which mimic the characteristics of the eggs of the host as much as possible. The cuckoo's egg is an outlier yet by blending in the host environment, it avoids detection and fatal outcome of rejection by the host.
+
+Similarly, considering outliers in a dataset, a data poisoning attack can ensure that these abnormal data points blend in the context by mimicking properties similar to the normal data, resulting in the misleading of the outlier detection mechanism. This is analogous to a creature to appear harmless or that is trying to avoid a predator (detection and purging mechanism).
+
 ### Semi-supervised KMeans Classification
 
 Centroids of KMeans are initialized based on a limited yet labeled sample. The centroids are labeled based on this sample. As the centroids fit the data during clustering, the label information is used to assign a label to each formulated cluster. The poisoning attack targets the sample data and flips its labels. This poisoned guide then may not result in the change of clustering but definietly will end up in misclassification. The diagrams below show the before and after attack predictions for the target variable.
