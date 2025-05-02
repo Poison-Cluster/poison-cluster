@@ -15,7 +15,7 @@ Centroids of KMeans are initialized based on a limited yet labeled sample. The c
 
 ## Usage Guide
 
-### Random Noise
+### Randomized Injection Attacks
 
 Open the notebook in a jupyter notebbok environment and execute the cells in order.  
 The cells are organized as follows:
