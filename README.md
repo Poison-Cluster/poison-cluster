@@ -4,13 +4,10 @@
 
 ### Semi-supervised KMeans Classification
 
-Centroids of KMeans are initialized based on a limited yet labeled sample. The centroids are labeled based on this sample. As the centroids fit the data during clustering, the label information is used to assign a label to each formulated cluster. The poisoning attack targets the sample data and flips its labels. This posioned guide then may not result in the change of clustering but definietly will end up in misclassification. The diagrams below show the before and after attack predictions for the target variable.
+Centroids of KMeans are initialized based on a limited yet labeled sample. The centroids are labeled based on this sample. As the centroids fit the data during clustering, the label information is used to assign a label to each formulated cluster. The poisoning attack targets the sample data and flips its labels. This poisoned guide then may not result in the change of clustering but definietly will end up in misclassification. The diagrams below show the before and after attack predictions for the target variable.
 
-![image](https://github.com/user-attachments/assets/bc4d7adc-f3f2-4dc7-848b-99195c87c79e)
-<img width="604" alt="image" src="https://github.com/user-attachments/assets/2e5ca48e-cac6-4c2e-9889-e79fe22418ae" />
-
-![image](https://github.com/user-attachments/assets/52414753-8a9e-4e60-83b9-6e94c90d045c)
-<img width="604" alt="image" src="https://github.com/user-attachments/assets/2ac8f000-29e6-46d1-b85d-d4896f199ef1" />
+![image](https://github.com/user-attachments/assets/11eb78b7-0f51-40db-bc5f-8acd6e7be197)
+<img width="604" alt="image" src="https://github.com/user-attachments/assets/d3d7a103-d829-44dc-b389-1f538e2f0977" />
 
 
 ## Usage Guide
