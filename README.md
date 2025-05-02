@@ -6,8 +6,15 @@
 
 Centroids of KMeans are initialized based on a limited yet labeled sample. The centroids are labeled based on this sample. As the centroids fit the data during clustering, the label information is used to assign a label to each formulated cluster. The poisoning attack targets the sample data and flips its labels. This poisoned guide then may not result in the change of clustering but definietly will end up in misclassification. The diagrams below show the before and after attack predictions for the target variable.
 
-![image](https://github.com/user-attachments/assets/11eb78b7-0f51-40db-bc5f-8acd6e7be197)
-<img width="604" alt="image" src="https://github.com/user-attachments/assets/d3d7a103-d829-44dc-b389-1f538e2f0977" />
+**Limitations:** The poisoned model seems to be immune against label flipping of the sample data if the flip ratio is not large enough. According to the experiments, a reliable ratio could be $0.7$ for the _Iris_ and $0.6$ for the _Breast cancer_ dataset.
+
+#### Iris Dataset
+![image](https://github.com/user-attachments/assets/655265aa-97dc-4c4c-967e-ddcfd2ce8bf9)
+<img width="1263" alt="image" src="https://github.com/user-attachments/assets/e6dfdb58-61f1-4e30-a6a6-177c4e0d1efc" />
+
+#### Breast Cancer Dataset
+![image](https://github.com/user-attachments/assets/77dd58d5-e273-41d6-9a8c-44c1715b2750)
+<img width="1263" alt="image" src="https://github.com/user-attachments/assets/988824bc-fdaa-4de8-bc43-9d00de62138e" />
 
 
 ## Usage Guide
