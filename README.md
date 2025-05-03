@@ -13,6 +13,12 @@ To exploit this vulnerability of the general Data Science pipeline, an interesti
 
 Similarly, considering outliers in a dataset, a data poisoning attack can ensure that these abnormal data points blend in the context by mimicking properties similar to the normal data, resulting in the misleading of the outlier detection mechanism. This is analogous to a creature to appear harmless or that is trying to avoid a predator (detection and purging mechanism).
 
+Beyond the concealing effect that mimicry provides for the cuckoo’s egg to survive, there is a dark twist: once the cuckoo chick hatches, it may evict the host’s eggs from the nest, resulting in a contextual reversal—the cuckoo is no longer a minority. Similarly, if the mimicking process in outlier-prone regions not only strengthens but becomes dominant over the rest of the data, the autonomous outlier removal process may begin to recognize originally normal data as abnormal and purge them from the dataset.
+
+In the following experiments only the mimicking part is covered, the contextual reversal stands as an idea to make the data poisoning attack more dangerous.
+
+**Limitations:** This attack assumes that a density-based (DBSCAN) outlier detection mechanism is in place of the targeted ML pipeline. If there are no outliers in the dataset then there is nothing to be concealed. In this case, manual injection of outliers may take place during the attack to ensure its success.
+
 |  _Experimental details_  |                                             Iris dataset |                                    Breast cancer dataset |
 |:-------------------------|---------------------------------------------------------:|---------------------------------------------------------:|
 | Number of features       |                                                        4 |                                                       30 |
