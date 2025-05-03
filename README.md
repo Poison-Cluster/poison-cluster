@@ -71,7 +71,25 @@ Centroids of KMeans are initialized based on a limited yet labeled sample. The c
 ##### Classification Report before and after Poisoning
 <img width="1186" alt="image" src="https://github.com/user-attachments/assets/f57c7098-7b98-401d-ae5c-22755288dc9d" />
 
+### Randomized Injection Attacks
 
+This notebook explores how various noise injection techniques impact the behavior and reliability of clustering algorithms, particularly K-means, using the Iris dataset as a case study.
+
+#### Attack Types Implemented
+
+- **Gaussian Noise:** Adds small, random perturbations to every feature in the dataset, making clusters less distinct and harder to separate.
+- **Uniform Outliers:** Introduces data points with values sampled far outside the original feature ranges. These extreme outliers are easy to identify but not always realistic.
+- **Subtle Outliers:** Creates deceptive data points using the covariance structure of the dataset. These outliers are visually similar to valid samples and are more difficult to detect.
+- **Label shuffling:** Shuffles the labels of the data, potentially confusing a semi supervised model when it compares the result of clustering and classification to ground truth.
+
+#### Key Findings
+
+- **K-means Vulnerabilities:** K-means is not designed to handle noise or outliers. It treats all points as equally valid, which can skew results.
+- **Metric Misinterpretation:** Clustering evaluation metrics may show artificially high performance when distant noise forms its own cluster, misleading analysts.
+- **Importance of Visualization:** Subtle attacks often go undetected by metrics alone. Visual inspection reveals cluster deformation more clearly.
+- **Robustness Requirements:** Real-world applications require clustering methods that can tolerate both naive and adversarial noise injections.
+
+The notebook demonstrates the fragility of standard clustering approaches in noisy environments and underscores the need for robust analytics pipelines.
 
 ## Usage Guide
 
