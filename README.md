@@ -54,12 +54,23 @@ Centroids of KMeans are initialized based on a limited yet labeled sample. The c
 **Limitations:** The poisoned model seems to be immune against label flipping of the sample data if the flip ratio is not large enough. According to the experiments, a reliable ratio could be $0.7$ for the _Iris_ and $0.6$ for the _Breast cancer_ dataset.
 
 #### Iris Dataset
-![image](https://github.com/user-attachments/assets/655265aa-97dc-4c4c-967e-ddcfd2ce8bf9)
-<img width="1263" alt="image" src="https://github.com/user-attachments/assets/e6dfdb58-61f1-4e30-a6a6-177c4e0d1efc" />
+
+##### Initial Centroids of Sample
+![image](https://github.com/user-attachments/assets/f3046e9b-7ff9-4d49-9f6e-91dd2d710544)
+##### Clustering & Classification
+![image](https://github.com/user-attachments/assets/15c91fe4-a651-4492-904d-6a4e82900f5f)
+##### Classification Report before and after Poisoning
+<img width="1186" alt="image" src="https://github.com/user-attachments/assets/073e18d7-a8f9-43d6-8d4e-b1c131e27837" />
 
 #### Breast Cancer Dataset
-![image](https://github.com/user-attachments/assets/77dd58d5-e273-41d6-9a8c-44c1715b2750)
-<img width="1263" alt="image" src="https://github.com/user-attachments/assets/988824bc-fdaa-4de8-bc43-9d00de62138e" />
+
+##### Initial Centroids of Sample
+![image](https://github.com/user-attachments/assets/3923e317-c664-44c0-93a5-90d760ba0c29)
+##### Clustering & Classification
+![image](https://github.com/user-attachments/assets/255c85a8-7b86-4c6c-a281-cc327ad54392)
+##### Classification Report before and after Poisoning
+<img width="1186" alt="image" src="https://github.com/user-attachments/assets/f57c7098-7b98-401d-ae5c-22755288dc9d" />
+
 
 
 ## Usage Guide
