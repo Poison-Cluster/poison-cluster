@@ -93,9 +93,27 @@ The notebook demonstrates the fragility of standard clustering approaches in noi
 
 ## Usage Guide
 
+
+### Mimicry-based Data Poisoning Attack
+
+[Notebook (Iris)](synthetic_injection/mimicry_based_attack_(Iris).ipynb)
+
+[Notebook (Breast cancer)](synthetic_injection/mimicry_based_attack_(Breast_cancer).ipynb)
+
+#### 1. **Data Setup**
+The notebooks download the `Iris` and `Breast cancer` datasets, respectively, using `sklearn.datasets` and store the dataset in Pandas DataFrame for ease of manipulation. The appropriate dataset in each notebook is explored and preprocessed.
+#### 2. **Helpers**
+In this section, various helper functions are placed that are used during modeling.
+#### 3. **Modeling**
+Main class and method definitions are located here. Poisoning the KMeans clustering model also takes place here.
+#### 4. **Evaluation & Comparison**
+Different evaluation scores are calculated for each model. These scores along with visualizations in the two-dimensional Principal Component space are used to compare the effects of the attacks.
+
+
+
 ### Randomized Injection Attacks
 
-Open the notebook in a jupyter notebbok environment and execute the cells in order.  
+Open the notebook in a jupyter notebook environment and execute the cells in order.  
 The cells are organized as follows:
 
 #### 1. **Data Setup**
