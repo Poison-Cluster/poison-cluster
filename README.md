@@ -94,11 +94,16 @@ The notebook demonstrates the fragility of standard clustering approaches in noi
 ## Usage Guide
 
 
-### Mimicry-based Data Poisoning Attack
+### Mimicry-based Data Poisoning Attack and Semi-supervised KMeans Exploitation
 
-[Notebook (Iris)](synthetic_injection/mimicry_based_attack_(Iris).ipynb)
+[Mimicry Notebook (Iris)](synthetic_injection/mimicry_based_attack_(Iris).ipynb)
 
-[Notebook (Breast cancer)](synthetic_injection/mimicry_based_attack_(Breast_cancer).ipynb)
+[Mimicry Notebook (Breast cancer)](synthetic_injection/mimicry_based_attack_(Breast_cancer).ipynb)
+
+
+[Semi-supervised Notebook (Iris)](synthetic_injection/exploit_semi_supervised_KMeans_(Iris).ipynb)
+
+[Semi-supervised Notebook (Breast cancer)](synthetic_injection/exploit_semi_supervised_KMeans_(Breast_cancer).ipynb)
 
 #### 1. **Data Setup**
 The notebooks download the `Iris` and `Breast cancer` datasets, respectively, using `sklearn.datasets` and store the dataset in Pandas DataFrame for ease of manipulation. The appropriate dataset in each notebook is explored and preprocessed.
@@ -107,7 +112,7 @@ In this section, various helper functions are placed that are used during modeli
 #### 3. **Modeling**
 Main class and method definitions are located here. Poisoning the KMeans clustering model also takes place here.
 #### 4. **Evaluation & Comparison**
-Different evaluation scores are calculated for each model. These scores along with visualizations in the two-dimensional Principal Component space are used to compare the effects of the attacks.
+Different evaluation scores are calculated for each model. These scores along with visualizations in the two-dimensional Principal Component space are used to compare the effects of the attacks. Advantages and limitations of the attacks are also included in this section.
 
 
 
