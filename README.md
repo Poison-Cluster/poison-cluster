@@ -13,6 +13,17 @@ To exploit this vulnerability of the general Data Science pipeline, an interesti
 
 Similarly, considering outliers in a dataset, a data poisoning attack can ensure that these abnormal data points blend in the context by mimicking properties similar to the normal data, resulting in the misleading of the outlier detection mechanism. This is analogous to a creature to appear harmless or that is trying to avoid a predator (detection and purging mechanism).
 
+#### Breast Cancer Dataset
+![image](https://github.com/user-attachments/assets/bae1b1ff-95ab-4e8c-a2ab-e889fb07ea7d)
+![image](https://github.com/user-attachments/assets/dd6aa29f-9cff-4d78-9580-d1fe7aaa94d1)
+
+| _Breast cancer dataset_                              |     Silhouette score |     Within-cluster std. |
+|:-----------------------------------------------------|---------------------:|------------------------:|
+| Normal clustering                                    |               0.3845 |                  0.1146 |
+| Outlier removal + Normal clustering                  |               0.3853 |                  0.1071 |
+| Data poisoning + Outlier removal + Normal clustering |               0.3427 |                  0.1519 |
+
+
 ### Semi-supervised KMeans Classification
 
 Centroids of KMeans are initialized based on a limited yet labeled sample. The centroids are labeled based on this sample. As the centroids fit the data during clustering, the label information is used to assign a label to each formulated cluster. The poisoning attack targets the sample data and flips its labels. This poisoned guide then may not result in the change of clustering but definietly will end up in misclassification. The diagrams below show the before and after attack predictions for the target variable.
