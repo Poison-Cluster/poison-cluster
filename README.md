@@ -18,48 +18,20 @@ In the following experiments only the mimicking part is covered, the contextual 
 
 **Limitations:** Relies on the outliers in the dataset. If there are no outliers in the dataset then there is nothing to be concealed. In this case, manual injection of outliers may take place during the attack to ensure its success.
 
-#### Iris Dataset
+**Poisoned clustering results:**
+
 ![image](https://github.com/user-attachments/assets/592fb001-6867-423e-b5c5-d5a1b0034c03)
 
-| _Iris dataset_          |     Silhouette score | Calinski-Harabasz Index | Davies-Bouldin Index | Mean within-cluster std. |
-|:------------------------|---------------------:|------------------------:|---------------------:|-------------------------:|
-| Normal clustering       |               0.4890 |                366.4486 |               0.7681 |                   0.0976 |
-| Poisoned clustering     |               0.5127 |                488.7650 |               0.8466 |                   0.1371 |
-
-#### Breast Cancer Dataset
 ![image](https://github.com/user-attachments/assets/2d27bf04-5f0b-4ea1-bde7-c4b4cfc6fc8c)
-
-| _Breast cancer dataset_ |     Silhouette score | Calinski-Harabasz Index | Davies-Bouldin Index | Mean within-cluster std. |
-|:------------------------|---------------------:|------------------------:|---------------------:|-------------------------:|
-| Normal clustering       |               0.3853 |                377.5418 |               1.1155 |                   0.1071 |
-| Poisoned clustering     |               0.5130 |               1261.8382 |               0.6937 |                   0.1372 |
 
 
 ### Hyperparameter Poisoning of Semi-supervised KMeans
 
-Centroids of KMeans are initialized based on a limited yet labeled sample. The centroids are labeled based on this sample. As the centroids fit the data during clustering, the label information is used to assign a label to each formulated cluster. The poisoning attack targets the sample data and flips its labels. This poisoned guide then may not result in the change of clustering but definietly will end up in misclassification. The diagrams below show the before and after attack predictions for the target variable.
+A limited sample is used to determine centroids for each target class. The KMeans is initialized with these centroids. As the centroids traverse during the fitting process, label information follows them. The poisoning attack targets the sample data and flips its labels. This poisoning then may not result in the change of clustering but definietly will end up in misclassification.
 
 **Advantages:** Only the sample data is needed to be poisoned. It makes entire cluster-wide mistakes. Centroids and cluster boundaries may remain unchanged.
 
 **Limitations:** The poisoned model seems to be immune against label flipping of the sample data if the flip ratio is not large enough. According to the experiments, a reliable ratio could be $0.7$ for the _Iris_ and $0.6$ for the _Breast cancer_ dataset. Centroids and cluster boundaries may remain unchanged.
-
-#### Iris Dataset
-![image](https://github.com/user-attachments/assets/9ac1517d-9a2d-4d9a-93e4-8e22a875b539)
-![image](https://github.com/user-attachments/assets/3897aec0-c08c-4c59-8c85-5add233a4091)
-
-| _Iris dataset_                                       | Accuracy |
-|:-----------------------------------------------------|---------:|
-| Unpoisoned                                           |     0.83 |
-| Poisoned                                             |     0.22 |
-
-#### Breast Cancer Dataset
-![image](https://github.com/user-attachments/assets/8f27fd43-1000-4dc8-9f5d-ec7168c5b89b)
-![image](https://github.com/user-attachments/assets/347463fb-0136-4fca-82a5-940f2ac1814a)
-
-| _Breast cancer dataset_                              | Accuracy |
-|:-----------------------------------------------------|---------:|
-| Unpoisoned                                           |     0.91 |
-| Poisoned                                             |     0.09 |
 
 
 ### Randomized Injection Attacks
