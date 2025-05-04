@@ -154,18 +154,3 @@ Biggio et al. (2012) focus specifically on poisoning attacks targeting **Support
 ### Demontis et al. (2019) - Why Do Adversarial Attacks Transfer? Explaining Transferability of Evasion and Poisoning Attacks
 
 Demontis et al. (2019) explore the reasons behind the **transferability** of adversarial attacks, including both **evasion and poisoning attacks**. The authors analyze how these attacks generalize across different models by exploiting **shared decision boundaries and feature space similarities**. Their study examines transferability in both **white-box and black-box settings**, showing that adversarial examples can remain effective even without direct knowledge of a target model. They conduct experiments on multiple machine learning models, such as **neural networks and SVMs**, to demonstrate that poisoning attacks can generalize across **datasets and architectures**. The paper discusses the implications of attack transferability for model robustness and proposes new techniques to **measure and mitigate this phenomenon**. The authors highlight how **adversarial training and feature space regularization** can reduce susceptibility to transferred attacks. Ultimately, the study concludes that understanding attack transferability is crucial for designing **more secure machine learning models**.
-
-## Key Definitions and Explanations
-
-- **Poisoning Attack** A type of adversarial attack where an attacker injects malicious data into the training set to manipulate a machine learning model's behavior, either by reducing accuracy (**availability attack**) or steering predictions in a specific direction (**integrity attack**).
-- **Availability Attack** A poisoning attack aimed at degrading the overall performance of a machine learning model, making it unreliable for general classification tasks.
-- **Integrity Attack** A poisoning attack that manipulates specific inputs to force the model into making incorrect predictions while maintaining overall accuracy.
-- **Label Flipping Attack** A poisoning technique where an attacker intentionally flips the class labels of certain training examples to mislead the model.
-- **Backdoor Attack** A type of poisoning attack where an attacker embeds hidden triggers in training data, allowing them to control model predictions when these triggers appear in test inputs.
-- **Gradient Manipulation Attack** An advanced poisoning method where an attacker crafts malicious training samples that directly influence the model's gradient updates to maximize error.
-- **Adversarial Training** A defense mechanism that involves training a model on adversarially modified examples to improve robustness against attacks.
-- **Transferability of Adversarial Attacks** The ability of an adversarial attack (such as evasion or poisoning) to remain effective across different machine learning models, datasets, or architectures.
-- **White-box Attack** An attack where the adversary has full knowledge of the model architecture, parameters, and training data, allowing for precise adversarial manipulations.
-- **Black-box Attack** An attack where the adversary has no direct access to the model's parameters or structure and must infer vulnerabilities based on input-output behavior.
-
-These definitions and explanations provide a fundamental understanding of poisoning attacks, their mechanisms, and possible defenses, highlighting the ongoing challenges in securing machine learning models.
