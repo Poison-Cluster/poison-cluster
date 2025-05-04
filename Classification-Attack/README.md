@@ -20,6 +20,7 @@ This notebook shows how adding "bad" data (poisoned data) can fool a flower-clas
 
 ### What You'll See
 ✅ A working flower classifier (91% accurate)  
+
 ✅ 3D graphs showing the attack effect on the classes
 
 ✅ Numbers showing how much worse the AI gets  
