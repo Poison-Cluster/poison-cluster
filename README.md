@@ -3,9 +3,6 @@
 ## Overview of Different Attacks
 
 ### Mimicry-based Data Poisoning Attack: A Behaviour Borrowed from Nature
-![image](https://github.com/user-attachments/assets/1148de88-dab9-4df1-a1f8-5bf3caadd478)
-
-*Image source: [The past, present and future of 'cuckoos versus reed warblers'](https://www.researchgate.net/publication/256655356_The_past_present_and_future_of_'cuckoos_versus_reed_warblers')*
 
 In Statistics and Machine Learning, many estimators and algorithms are sensitive to outliers. For example, calculating the mean of a distribution or performing clustering with KMeans are affected by the presence of extreme values. Oftentimes, it is advised to apply an outlier detection algorithm on the dataset and remove the extreme values or areas with low-density compared to the rest of the data. Applying outlier detection and issuing their blind removal may lead to unexpected and even fatal results in terms of the Machine Learning model that is to be trained by the cleaned data.
 
@@ -17,59 +14,53 @@ Beyond the concealing effect that mimicry provides for the cuckoo’s egg to sur
 
 In the following experiments only the mimicking part is covered, the contextual reversal stands as an idea to make the data poisoning attack more dangerous.
 
-**Limitations:** This attack assumes that a density-based (DBSCAN) outlier detection mechanism is in place of the targeted ML pipeline. If there are no outliers in the dataset then there is nothing to be concealed. In this case, manual injection of outliers may take place during the attack to ensure its success.
+**Advantages:** Despite shifting the centroids along with the possibility to change cluster boundaries, it does not significantly change performance metrics, at least not for the worse. Some of the scores may even generate false confidence.
 
-|  _Experimental details_  |                                             Iris dataset |                                    Breast cancer dataset |
-|:-------------------------|---------------------------------------------------------:|---------------------------------------------------------:|
-| Number of features       |                                                        4 |                                                       30 |
-| Standardization method   |                                          Min-max scaling |                                          Min-max scaling |
-| Training data            |                 All observations (150 ± purge/injection) |                 All observations (569 ± purge/injection) |
-| Number of fixed clusters |                                                        3 |                                                        2 |
-| Visualization method     |                                                      PCA |                                                      PCA |
-| Evaluation metrics       | Silhouette score, Mean within-cluster standard deviation | Silhouette score, Mean within-cluster standard deviation |
+**Limitations:** Relies on the outliers in the dataset. If there are no outliers in the dataset then there is nothing to be concealed. In this case, manual injection of outliers may take place during the attack to ensure its success.
 
 #### Iris Dataset
 ![image](https://github.com/user-attachments/assets/592fb001-6867-423e-b5c5-d5a1b0034c03)
 
-| _Iris dataset_                                       |     Silhouette score | Mean within-cluster std. |
-|:-----------------------------------------------------|---------------------:|-------------------------:|
-| Normal clustering                                    |               0.4829 |                   0.1029 |
-| Outlier removal + Normal clustering                  |               0.5062 |                   0.0982 |
-| Data poisoning + Outlier removal + Normal clustering |               0.5518 |                   0.1206 |
+| _Iris dataset_          |     Silhouette score | Calinski-Harabasz Index | Davies-Bouldin Index | Mean within-cluster std. |
+|:------------------------|---------------------:|------------------------:|---------------------:|-------------------------:|
+| Normal clustering       |               0.4890 |                366.4486 |               0.7681 |                   0.0976 |
+| Poisoned clustering     |               0.5127 |                488.7650 |               0.8466 |                   0.1371 |
 
 #### Breast Cancer Dataset
 ![image](https://github.com/user-attachments/assets/2d27bf04-5f0b-4ea1-bde7-c4b4cfc6fc8c)
 
-| _Breast cancer dataset_                              |     Silhouette score | Mean within-cluster std. |
-|:-----------------------------------------------------|---------------------:|-------------------------:|
-| Normal clustering                                    |               0.3845 |                   0.1146 |
-| Outlier removal + Normal clustering                  |               0.3853 |                   0.1071 |
-| Data poisoning + Outlier removal + Normal clustering |               0.3441 |                   0.1513 |
+| _Breast cancer dataset_ |     Silhouette score | Calinski-Harabasz Index | Davies-Bouldin Index | Mean within-cluster std. |
+|:------------------------|---------------------:|------------------------:|---------------------:|-------------------------:|
+| Normal clustering       |               0.3853 |                377.5418 |               1.1155 |                   0.1071 |
+| Poisoned clustering     |               0.5130 |               1261.8382 |               0.6937 |                   0.1372 |
 
 
-### Semi-supervised KMeans Classification
+### Hyperparameter Poisoning of Semi-supervised KMeans
 
 Centroids of KMeans are initialized based on a limited yet labeled sample. The centroids are labeled based on this sample. As the centroids fit the data during clustering, the label information is used to assign a label to each formulated cluster. The poisoning attack targets the sample data and flips its labels. This poisoned guide then may not result in the change of clustering but definietly will end up in misclassification. The diagrams below show the before and after attack predictions for the target variable.
 
-**Limitations:** The poisoned model seems to be immune against label flipping of the sample data if the flip ratio is not large enough. According to the experiments, a reliable ratio could be $0.7$ for the _Iris_ and $0.6$ for the _Breast cancer_ dataset.
+**Advantages:** Only the sample data is needed to be poisoned. It makes entire cluster-wide mistakes. Centroids and cluster boundaries may remain unchanged.
+
+**Limitations:** The poisoned model seems to be immune against label flipping of the sample data if the flip ratio is not large enough. According to the experiments, a reliable ratio could be $0.7$ for the _Iris_ and $0.6$ for the _Breast cancer_ dataset. Centroids and cluster boundaries may remain unchanged.
 
 #### Iris Dataset
+![image](https://github.com/user-attachments/assets/9ac1517d-9a2d-4d9a-93e4-8e22a875b539)
+![image](https://github.com/user-attachments/assets/3897aec0-c08c-4c59-8c85-5add233a4091)
 
-##### Initial Centroids of Sample
-![image](https://github.com/user-attachments/assets/f3046e9b-7ff9-4d49-9f6e-91dd2d710544)
-##### Clustering & Classification
-![image](https://github.com/user-attachments/assets/15c91fe4-a651-4492-904d-6a4e82900f5f)
-##### Classification Report before and after Poisoning
-<img width="1186" alt="image" src="https://github.com/user-attachments/assets/073e18d7-a8f9-43d6-8d4e-b1c131e27837" />
+| _Iris dataset_                                       | Accuracy |
+|:-----------------------------------------------------|---------:|
+| Unpoisoned                                           |     0.83 |
+| Poisoned                                             |     0.22 |
 
 #### Breast Cancer Dataset
+![image](https://github.com/user-attachments/assets/8f27fd43-1000-4dc8-9f5d-ec7168c5b89b)
+![image](https://github.com/user-attachments/assets/347463fb-0136-4fca-82a5-940f2ac1814a)
 
-##### Initial Centroids of Sample
-![image](https://github.com/user-attachments/assets/3923e317-c664-44c0-93a5-90d760ba0c29)
-##### Clustering & Classification
-![image](https://github.com/user-attachments/assets/255c85a8-7b86-4c6c-a281-cc327ad54392)
-##### Classification Report before and after Poisoning
-<img width="1186" alt="image" src="https://github.com/user-attachments/assets/f57c7098-7b98-401d-ae5c-22755288dc9d" />
+| _Breast cancer dataset_                              | Accuracy |
+|:-----------------------------------------------------|---------:|
+| Unpoisoned                                           |     0.91 |
+| Poisoned                                             |     0.09 |
+
 
 ### Randomized Injection Attacks
 
@@ -94,16 +85,15 @@ The notebook demonstrates the fragility of standard clustering approaches in noi
 ## Usage Guide
 
 
-### Mimicry-based Data Poisoning Attack and Semi-supervised KMeans Exploitation
+### Mimicry-based Data Poisoning Attack and Hyperparameter Poisoning
 
 [Mimicry Notebook (Iris)](synthetic_injection/mimicry_based_attack_(Iris).ipynb)
 
 [Mimicry Notebook (Breast cancer)](synthetic_injection/mimicry_based_attack_(Breast_cancer).ipynb)
 
+[Hyperparameter Poisoning Notebook (Iris)](synthetic_injection/exploit_semi_supervised_KMeans_(Iris).ipynb)
 
-[Semi-supervised Notebook (Iris)](synthetic_injection/exploit_semi_supervised_KMeans_(Iris).ipynb)
-
-[Semi-supervised Notebook (Breast cancer)](synthetic_injection/exploit_semi_supervised_KMeans_(Breast_cancer).ipynb)
+[Hyperparameter Poisoning Notebook (Breast cancer)](synthetic_injection/exploit_semi_supervised_KMeans_(Breast_cancer).ipynb)
 
 #### 1. **Data Setup**
 The notebooks download the `Iris` and `Breast cancer` datasets, respectively, using `sklearn.datasets` and store the dataset in Pandas DataFrame for ease of manipulation. The appropriate dataset in each notebook is explored and preprocessed.
