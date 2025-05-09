@@ -113,6 +113,49 @@ For each scenario, clustering quality is evaluated using:
 
 These metrics are compared across different scenarios to observe how noise affects cluster structure and algorithm performance.
 
+
+### Cluster Poisoning Between Two Clusters
+
+Open the notebook in a Jupyter Notebook environment and execute the cells sequentially.  
+The workflow is organized into the following sections:
+
+#### 1. **Data Loading and Preparation**
+
+- Loads the **Iris dataset** using `sklearn.datasets`.
+- Scales features using `StandardScaler` to normalize the input space.
+- Initializes true cluster labels for comparison purposes.
+
+#### 2. **K-Means Clustering on Clean Data**
+
+- Applies `KMeans` clustering with 3 clusters on the original, unpoisoned data.
+- Visualizes the clustering result using 2D PCA projections.
+- Computes baseline clustering metrics:
+  - `Silhouette Score`
+  - `Davies-Bouldin Index`
+  - `Calinski-Harabasz Score`
+  - `Adjusted Rand Index (ARI)`
+
+#### 3. **Synthetic Cluster Poisoning**
+
+- Introduces synthetic "bridge" points between two distinct clusters using a custom interpolation method.
+- These bridge points simulate **intentional data poisoning** to blur cluster boundaries.
+- The synthetic data is inserted into the original dataset.
+
+#### 4. **Re-Clustering on Poisoned Data**
+
+- Re-runs `KMeans` on the poisoned dataset.
+- Evaluates changes in clustering performance using the same metrics.
+- Visualizes the new clusters to show how poisoning impacts the clustering outcome.
+
+#### 5. **Poisoning Impact Analysis**
+
+- Compares metrics before and after poisoning to quantify the degradation in cluster separation.
+- Includes label extension logic for handling mixed-label (real + synthetic) data properly.
+
+This notebook demonstrates how introducing synthetic samples can intentionally degrade the quality of K-Means clustering. It is useful for studying robustness and vulnerabilities in unsupervised learning settings.
+
+
+
 ## Summary of the References
 
 ### Wang, Yanling, et al. (2024) - ClusterPoison: Poisoning Attacks on Recommender Systems with Limited Fake Users
@@ -138,4 +181,14 @@ Zhang and Tang (2024) investigate how clustering algorithms like K-means, GMM, a
 ###  Steinbuss & Böhm (2021) – Generating Artificial Outliers in the Absence of Genuine Ones: A Survey
 
 Steinbuss and Böhm (2021) provide an in-depth overview of how artificial outliers can be generated in situations where real anomalies aren’t available—something common in unsupervised learning tasks. They break down the different methods into clear categories, including simple uniform sampling, techniques based on distribution modeling, and more advanced approaches like adversarial generation using GANs. The paper discusses practical use cases such as converting unsupervised problems into supervised ones, fine-tuning one-class classifiers, and running exploratory analyses. Through a series of experiments, they show that the effectiveness of these methods can vary widely depending on the dataset. The survey offers a helpful framework for choosing the right method and includes a decision-making guide for applying these techniques in practice.
+
+### Im et al. (2020) – Fast Noise Removal for K-Means Clustering
+
+Im et al. (2020) address one of K-Means clustering's major weaknesses: its sensitivity to noise and outliers. The authors propose a simple yet effective greedy algorithm that removes noise points before clustering begins. Their method iteratively selects and eliminates samples that contribute the most to the total clustering cost, resulting in a cleaner dataset for the K-Means algorithm to process. The paper provides both theoretical guarantees and empirical results showing that the noise-removal step significantly improves clustering quality, especially on datasets with heavy-tailed noise or adversarial contamination. This work is particularly useful for preprocessing in real-world scenarios where noise is inevitable, offering a computationally efficient solution to improve clustering robustness.
+
+### Ran et al. (2021) – A Novel K-Means Clustering Algorithm with a Noise Algorithm for Capturing Urban Hotspots
+
+Ran et al. (2021) present an enhanced version of the traditional K-Means algorithm that integrates a noise-handling module to better detect dense areas—specifically urban hotspots. The method combines noise filtering with adaptive centroid initialization, allowing the algorithm to automatically determine the number of clusters and avoid convergence on local minima. Unlike standard K-Means, this variant identifies and separates noisy or low-density points before performing clustering, leading to more stable and interpretable results. Their experiments, applied to urban spatial data, demonstrate superior performance in hotspot detection and reduced sensitivity to initialization and outliers. The paper is especially relevant for geospatial analytics and smart city applications where cluster clarity is crucial.
+
+
 
