@@ -24,3 +24,7 @@ This notebook shows how adding "bad" data (poisoned data) can fool a flower-clas
 ✅ 3D graphs showing the attack effect on the classes
 
 ✅ Numbers showing how much worse the AI gets  
+
+[DataCamp (2024) – Classification vs Clustering in Machine Learning: A Comprehensive Guide](https://www.datacamp.com/blog/classification-vs-clustering-in-machine-learning?utm_source=chatgpt.com)
+
+This article offers a clear comparison between classification and clustering, two fundamental machine learning techniques. Classification is described as a supervised learning method that assigns predefined labels to data points based on input features, utilizing algorithms like logistic regression and decision trees. Clustering, conversely, is an unsupervised learning approach that groups unlabeled data based on inherent similarities, employing algorithms such as K-means and DBSCAN. The guide highlights key differences, including the necessity of labeled data for classification versus the exploratory nature of clustering, and outlines typical use cases for each method.
